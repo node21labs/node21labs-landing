@@ -2,32 +2,32 @@ import { useState, useEffect } from "react";
 
 const PROJECTS = [
   {
-    name: "Parcel21",
+    name: "RGB Consignment NIP",
     status: "In Development",
     description:
-      "Decentralized consignment exchange over Nostr for RGB smart contracts. Replacing centralized proxy servers with encrypted, censorship-resistant delivery.",
-    tags: ["RGB", "Nostr", "TypeScript"],
+      "A Nostr Implementation Possibility specification defining how RGB consignment exchange is coordinated over Nostr, including event kinds, encryption, and delivery flow.",
+    tags: ["Specification", "Nostr", "RGB"],
   },
   {
-    name: "RGB Nostr NIP",
-    status: "Drafting",
-    description:
-      "A Nostr Implementation Possibility specification defining how RGB consignments, ACK/NACK responses, and metadata are encoded as Nostr events.",
-    tags: ["Specification", "Nostr", "Protocol"],
-  },
-  {
-    name: "Parcel21 Client",
+    name: "Reference Relay",
     status: "Planned",
     description:
-      "A test client for developers to validate and debug Nostr-based consignment exchange with an intuitive interface.",
-    tags: ["Test Client", "TypeScript"],
+      "A Nostr relay built specifically for RGB consignment exchange, supporting the event kinds and payload sizes required by the NIP. Docker-packaged and publicly deployed.",
+    tags: ["Nostr", "Relay", "Infrastructure"],
+  },
+  {
+    name: "Reference Client",
+    status: "Planned",
+    description:
+      "A web application demonstrating end-to-end consignment exchange over Nostr. Send, receive, and acknowledge RGB consignment data over decentralized infrastructure.",
+    tags: ["Web App", "TypeScript", "Nostr"],
   },
 ];
 
 const TEAM = [
   { name: "Nicholas Chiarulli", role: "Co-Founder & Technical Lead" },
   { name: "Cristy Almonte", role: "Co-Founder & Product Lead" },
-  { name: "Emmanuel Almonte", role: "Co-Founder & Core Contributor" },
+  { name: "Emmanuel Almonte", role: "Co-Founder & Senior Engineer" },
 ];
 
 function HexGrid() {
@@ -290,7 +290,6 @@ export default function App() {
         </div>
         <div className="nav-links" style={{ display: "flex", gap: "36px" }}>
           <a className="nav-link" href="#projects">Projects</a>
-          <a className="nav-link" href="#about">About</a>
           <a className="nav-link" href="#team">Team</a>
           <a className="nav-link" href="#contact">Contact</a>
         </div>
@@ -299,7 +298,7 @@ export default function App() {
       {/* HERO */}
       <section
         style={{
-          minHeight: "100vh",
+          minHeight: "85vh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -351,13 +350,12 @@ export default function App() {
               color: "#f0f0f0",
             }}
           >
-            Building infrastructure
+            Open-source infrastructure
             <br />
             for{" "}
             <span style={{ color: "#f7931a", fontStyle: "italic" }}>
-              RGB
-            </span>{" "}
-            on Bitcoin
+              Bitcoin, RGB, and Nostr
+            </span>
           </h1>
 
           <p
@@ -371,9 +369,9 @@ export default function App() {
               fontWeight: 300,
             }}
           >
-            We build open-source tools for private, scalable smart contracts.
-            Decentralized consignment exchange. Nostr-native protocols.
-            Client-side validation infrastructure.
+            Node21 Labs is a development studio focused on building
+            open-source infrastructure for the Bitcoin, RGB, and Nostr
+            ecosystems.
           </p>
 
           <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
@@ -383,45 +381,13 @@ export default function App() {
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: "48px",
-            left: "48px",
-            display: "flex",
-            alignItems: "center",
-            gap: "12px",
-            animation: "fadeIn 1s ease-out 1.5s both",
-          }}
-        >
-          <div
-            style={{
-              width: "1px",
-              height: "40px",
-              background: "linear-gradient(to bottom, #f7931a44, transparent)",
-            }}
-          />
-          <span
-            style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: "9px",
-              letterSpacing: "0.2em",
-              color: "#555",
-              textTransform: "uppercase",
-              writingMode: "vertical-rl",
-            }}
-          >
-            Scroll
-          </span>
-        </div>
       </section>
 
       {/* PROJECTS */}
       <section
         id="projects"
         style={{
-          padding: "120px 48px",
+          padding: "60px 48px",
           position: "relative",
           zIndex: 1,
         }}
@@ -502,70 +468,11 @@ export default function App() {
         </div>
       </section>
 
-      {/* ABOUT */}
-      <section
-        id="about"
-        style={{
-          padding: "120px 48px",
-          position: "relative",
-          zIndex: 1,
-        }}
-      >
-        <div className="section-label">About</div>
-
-        <div style={{ maxWidth: "700px" }}>
-          <h2
-            style={{
-              fontSize: "40px",
-              fontWeight: 400,
-              lineHeight: 1.2,
-              marginBottom: "32px",
-              color: "#f0f0f0",
-            }}
-          >
-            Privacy-first infrastructure
-            <br />
-            for <span style={{ fontStyle: "italic", color: "#f7931a" }}>client-side validation</span>
-          </h2>
-
-          <div
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: "15px",
-              lineHeight: 1.8,
-              color: "#777",
-              fontWeight: 300,
-              display: "flex",
-              flexDirection: "column",
-              gap: "20px",
-            }}
-          >
-            <p>
-              Node21 Labs builds open-source tooling for the RGB smart contract
-              ecosystem on Bitcoin. We focus on the infrastructure layer that
-              makes private, scalable smart contracts practical for real-world
-              use.
-            </p>
-            <p>
-              Our current focus is replacing centralized consignment exchange with
-              decentralized, encrypted delivery over Nostr. Every RGB transfer
-              depends on reliable consignment delivery, and the existing
-              infrastructure is fragile, unencrypted, and centralized.
-            </p>
-            <p>
-              We believe the future of smart contracts is client-side validated,
-              private by default, and anchored to Bitcoin's security model. We're
-              building the tools to make that future work.
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* TEAM */}
       <section
         id="team"
         style={{
-          padding: "120px 48px",
+          padding: "60px 48px",
           position: "relative",
           zIndex: 1,
         }}
@@ -603,7 +510,7 @@ export default function App() {
       <section
         id="contact"
         style={{
-          padding: "120px 48px 80px",
+          padding: "60px 48px 40px",
           position: "relative",
           zIndex: 1,
         }}
@@ -623,23 +530,9 @@ export default function App() {
             Let's build the future of
             <br />
             <span style={{ fontStyle: "italic", color: "#f7931a" }}>
-              RGB together
+              decentralized software together
             </span>
           </h2>
-
-          <p
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: "15px",
-              lineHeight: 1.7,
-              color: "#777",
-              marginBottom: "36px",
-              fontWeight: 300,
-            }}
-          >
-            Interested in contributing, collaborating, or integrating our tools
-            into your wallet? Get in touch.
-          </p>
 
           <div
             style={{
@@ -652,7 +545,7 @@ export default function App() {
           >
             <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
               <span style={{ color: "#f7931a", width: "60px" }}>Email</span>
-              <span style={{ color: "#888" }}>Node21Labs@gmail.com</span>
+              <span style={{ color: "#888" }}>node21labs@proton.me</span>
             </div>
             <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
               <span style={{ color: "#f7931a", width: "60px" }}>GitHub</span>
