@@ -3,23 +3,23 @@ import { useState, useEffect } from "react";
 const PROJECTS = [
   {
     name: "RGB Consignment NIP",
-    status: "In Development",
+    status: "Shipped",
     description:
-      "A Nostr Implementation Possibility specification defining how RGB consignment exchange is coordinated over Nostr, including event kinds, encryption, and delivery flow.",
+      "A draft NIP specifying RGB consignment exchange over Nostr — event kinds, encryption, and the delivery and acknowledgment flow. Hardened by an adversarial security review.",
     tags: ["Specification", "Nostr", "RGB"],
   },
   {
     name: "Reference Relay",
-    status: "Planned",
+    status: "Live",
     description:
-      "A Nostr relay built specifically for RGB consignment exchange, supporting the event kinds and payload sizes required by the NIP. Docker-packaged and publicly deployed.",
+      "A Nostr relay built for RGB consignment exchange, publicly deployed and carrying real transfers. Kind-gated with token-based write access; reads stay public.",
     tags: ["Nostr", "Relay", "Infrastructure"],
   },
   {
     name: "Reference Client",
-    status: "Planned",
+    status: "Live",
     description:
-      "A web application demonstrating end-to-end consignment exchange over Nostr. Send, receive, and acknowledge RGB consignment data over decentralized infrastructure.",
+      "A web application demonstrating end-to-end consignment exchange over Nostr — and a live marketplace demo settling real RGB transfers on Bitcoin's Mutinynet.",
     tags: ["Web App", "TypeScript", "Nostr"],
   },
 ];
@@ -80,6 +80,8 @@ function HexGrid() {
 
 function StatusBadge({ status }) {
   const colors = {
+    Live: { bg: "#22c55e22", text: "#4ade80", dot: "#22c55e" },
+    Shipped: { bg: "#22c55e22", text: "#4ade80", dot: "#22c55e" },
     "In Development": { bg: "#f7931a22", text: "#f7931a", dot: "#f7931a" },
     Drafting: { bg: "#3b82f622", text: "#60a5fa", dot: "#3b82f6" },
     Planned: { bg: "#ffffff11", text: "#888", dot: "#666" },
@@ -107,7 +109,7 @@ function StatusBadge({ status }) {
           height: "6px",
           borderRadius: "50%",
           background: c.dot,
-          animation: status === "In Development" ? "pulse 2s ease-in-out infinite" : "none",
+          animation: status === "Live" || status === "In Development" ? "pulse 2s ease-in-out infinite" : "none",
         }}
       />
       {status}
