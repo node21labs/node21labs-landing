@@ -3,10 +3,11 @@ import { useState, useEffect } from "react";
 const PROJECTS = [
   {
     name: "RGB Consignment NIP",
-    status: "Shipped",
+    status: "Live",
     description:
       "A draft NIP specifying RGB consignment exchange over Nostr — event kinds, encryption, and the delivery and acknowledgment flow. Hardened by an adversarial security review.",
     tags: ["Specification", "Nostr", "RGB"],
+    link: "https://github.com/node21labs/parcel21/blob/main/spec/nip-XX-rgb-consignment-exchange.md",
   },
   {
     name: "Reference Relay",
@@ -14,13 +15,23 @@ const PROJECTS = [
     description:
       "A Nostr relay built for RGB consignment exchange, publicly deployed and carrying real transfers. Kind-gated with token-based write access; reads stay public.",
     tags: ["Nostr", "Relay", "Infrastructure"],
+    link: "https://github.com/node21labs/parcel21/tree/main/relay",
   },
   {
     name: "Reference Client",
     status: "Live",
     description:
-      "A web application demonstrating end-to-end consignment exchange over Nostr — and a live marketplace demo settling real RGB transfers on Bitcoin's Mutinynet.",
+      "A web application demonstrating end-to-end consignment exchange over Nostr — send, receive, and acknowledge with every protocol event logged live.",
     tags: ["Web App", "TypeScript", "Nostr"],
+    link: "https://client-production-ffe8.up.railway.app",
+  },
+  {
+    name: "Live Demo",
+    status: "Live",
+    description:
+      "A marketplace demo where checkout settles as a real RGB transfer over Nostr on Bitcoin's Mutinynet — surfacing the Bitcoin transaction, the encrypted Nostr event, and the RGB contract for anyone to verify.",
+    tags: ["Demo", "Mutinynet", "RGB"],
+    link: "https://demo.node21labs.com",
   },
 ];
 
@@ -81,7 +92,6 @@ function HexGrid() {
 function StatusBadge({ status }) {
   const colors = {
     Live: { bg: "#22c55e22", text: "#4ade80", dot: "#22c55e" },
-    Shipped: { bg: "#22c55e22", text: "#4ade80", dot: "#22c55e" },
     "In Development": { bg: "#f7931a22", text: "#f7931a", dot: "#f7931a" },
     Drafting: { bg: "#3b82f622", text: "#60a5fa", dot: "#3b82f6" },
     Planned: { bg: "#ffffff11", text: "#888", dot: "#666" },
@@ -182,7 +192,7 @@ export default function App() {
           padding: 36px;
           background: #0e0e0e;
           transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-          cursor: default;
+          cursor: pointer;
         }
         .project-card:hover {
           border-color: #f7931a33;
@@ -406,12 +416,18 @@ export default function App() {
           }}
         >
           {PROJECTS.map((p, i) => (
-            <div
+            <a
               key={i}
               className="project-card"
+              href={p.link}
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 animation: mounted ? `fadeUp 0.6s ease-out ${0.1 * i}s both` : "none",
                 gridColumn: i === 0 ? "1 / -1" : "auto",
+                display: "block",
+                textDecoration: "none",
+                color: "inherit",
               }}
             >
               <div
@@ -429,7 +445,16 @@ export default function App() {
                     color: "#f0f0f0",
                   }}
                 >
-                  {p.name}
+                  {p.name}{" "}
+                  <span
+                    style={{
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: "14px",
+                      color: "#555",
+                    }}
+                  >
+                    ↗
+                  </span>
                 </h3>
                 <StatusBadge status={p.status} />
               </div>
@@ -465,7 +490,7 @@ export default function App() {
                   </span>
                 ))}
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </section>
